@@ -24,7 +24,7 @@ echo "Created the CMakeLists.txt"
 mkdir src
 mkdir include
 
-touch main.cpp
+touch include/main.cpp
 echo "Created the main.cpp"
 printf "cmake_minimum_required(VERSION 3.10)\nproject($projectname)\nset(CMAKE_EXPORT_COMPILE_COMMANDS ON)\nset(CMAKE_CXX_STANDARD 17)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\nadd_executable($projectname src/main.cpp)\ntarget_include_directories($projectname PRIVATE include)"  > CMakeLists.txt
 echo "Done"
