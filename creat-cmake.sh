@@ -20,8 +20,12 @@ done
 
 if [[ "$lang" == "C" ]]; then
     filename="main.c"
+    sign="CMAKE_C_STANDARD"
+    req="CMAKE_C_STANDARD_REQUIRED"
 elif [[ "$lang" == "CXX" ]]; then
     filename="main.cpp"
+    sign="CMAKE_CXX_STANDARD"
+    req="CMAKE_CXX_STANDARD_REQUIRED"
 fi
 
 echo "This porject will use $lang 17"
@@ -39,7 +43,13 @@ mkdir include
 
 touch src/$filename
 echo "Created the src/$filename"
-printf "cmake_minimum_required(VERSION 3.10)\nproject($projectname)\nset(CMAKE_EXPORT_COMPILE_COMMANDS ON)\nset(CMAKE_$lang_STANDARD 17)\nset(CMAKE_$lang_STANDARD_REQUIRED ON)\nadd_executable($projectname src/$filename)\ntarget_include_directories($projectname PRIVATE include)"  > CMakeLists.txt
+printf "cmake_minimum_required(VERSION 3.10)\n" >> CMakeLists.txt
+printf "project($projectname)\n" >> CMakeLists.txt
+printf "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)\n" >> CMakeLists.txt
+printf "set($sign 17)\n" >> CMakeLists.txt
+printf "set($req ON)\n" >> CMakeLists.txt
+printf "add_executable($projectname src/$filename)\n" >> CMakeLists.txt
+printf "target_include_directories($projectname PRIVATE include)"  >> CMakeLists.txt
 
 mkdir build
 cd build
